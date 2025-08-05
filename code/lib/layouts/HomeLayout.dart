@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/layouts/CategoryLayout.dart';
+import 'package:just_habits/layouts/CreateNewWindowLayout.dart';
 import 'package:just_habits/layouts/ItemListLayout.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 
@@ -26,12 +27,21 @@ class HomeLayout extends StatelessWidget{
                 LinearPercentIndicator(),
                 Column(
                   children: [
-                    new CategoryLayout([new ItemListLayout()]),
-                    new ItemListLayout(),
-                    new ItemListLayout()
+                    CategoryLayout([ItemListLayout()]),
+                    ItemListLayout(),
+                    ItemListLayout()
                   ],
                 ),
-                IconButton(onPressed: onPressed, icon: Icon(Icons.add))
+                IconButton(onPressed: () => showDialog(
+                    context: context,
+                    builder:
+                    (BuildContext context) => AlertDialog(
+                      title: Text("Create New"),
+                      actions: [
+                        CreateNewWindowLayout()
+                      ],
+                    )
+                ), icon: Icon(Icons.add))
               ],
             )
         )

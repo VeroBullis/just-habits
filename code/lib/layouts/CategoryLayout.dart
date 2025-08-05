@@ -15,12 +15,12 @@ class CategoryLayout extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(10),
         child: CircularPercentIndicator(radius: 10)),
-        Text("Layout Title"),
+        Text("Category Title"),
         IconButton(onPressed: onPressed, icon: Icon(Icons.keyboard_arrow_down))
       ],),
       Padding(
         padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-        child: Column(children: this.children))
+        child: Column(children: children))
     ]
     );
   }
