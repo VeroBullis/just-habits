@@ -1,6 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/layouts/NewHabitScreenLayout.dart';
+import 'package:just_habits/layouts/NewHeaderLayout.dart';
+import 'package:just_habits/layouts/NewItemLayout.dart';
 
 enum Choice {item, category}
 
@@ -39,10 +42,18 @@ class _CreateNewWindowState extends State<CreateNewWindowLayout> {
             }
         ),
         TextButton(
-            onPressed: onPressed,
+            onPressed: onOkPressed,
             child: Text("OK")
         )
       ],
+    );
+  }
+
+  void onOkPressed() {
+    Navigator.pop(context);
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => NewHabitScreenLayout())
     );
   }
 
