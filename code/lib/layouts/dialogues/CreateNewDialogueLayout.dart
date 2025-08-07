@@ -1,20 +1,21 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_habits/layouts/NewHabitScreenLayout.dart';
+import 'package:just_habits/layouts/screens/NewGoalScreenLayout.dart';
+import 'package:just_habits/layouts/screens/NewHabitScreenLayout.dart';
 import 'package:just_habits/layouts/NewHeaderLayout.dart';
 import 'package:just_habits/layouts/NewItemLayout.dart';
 
 enum Choice {item, category}
 
-class CreateNewWindowLayout extends StatefulWidget {
+class CreateNewDialogueLayout extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _CreateNewWindowState();
 
 }
 
-class _CreateNewWindowState extends State<CreateNewWindowLayout> {
+class _CreateNewWindowState extends State<CreateNewDialogueLayout> {
   Choice? _choice = Choice.item;
 
   @override
@@ -53,7 +54,7 @@ class _CreateNewWindowState extends State<CreateNewWindowLayout> {
     Navigator.pop(context);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => NewHabitScreenLayout())
+        MaterialPageRoute(builder: (context) => NewGoalScreenLayout())
     );
   }
 

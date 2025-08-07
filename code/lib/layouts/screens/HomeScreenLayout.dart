@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/layouts/CategoryLayout.dart';
-import 'package:just_habits/layouts/CreateNewWindowLayout.dart';
+import 'package:just_habits/layouts/dialogues/CreateNewDialogueLayout.dart';
 import 'package:just_habits/layouts/ItemListLayout.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 
-class HomeLayout extends StatelessWidget{
+class HomeScreenLayout extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +38,7 @@ class HomeLayout extends StatelessWidget{
                     (BuildContext context) => AlertDialog(
                       title: Text("Create New"),
                       actions: [
-                        CreateNewWindowLayout()
+                        CreateNewDialogueLayout()
                       ],
                     )
                 ), icon: Icon(Icons.add))

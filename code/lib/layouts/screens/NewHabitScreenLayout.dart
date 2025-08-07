@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/layouts/AdvancedItemSettingsLayout.dart';
+import 'package:just_habits/layouts/screens/AdvancedItemSettingsScreenLayout.dart';
 import 'package:just_habits/layouts/DaySelectLayout.dart';
+import 'package:just_habits/layouts/MonthSelectLayout.dart';
 import 'package:just_habits/layouts/NewItemLayout.dart';
+import 'package:just_habits/layouts/WeekSelectLayout.dart';
 
 class NewHabitScreenLayout extends StatefulWidget {
   @override
@@ -23,14 +27,20 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
                 DropdownMenuEntry(value: "Month", label: "Month")
               ]
           ),
-          DaySelectLayout(),
+          MonthSelectLayout(),
           SwitchListTile(
               title: Text("Reminder"),
               value: false,
               onChanged: (bool? value) {}
           ),
           TextButton(
-              onPressed: onPressed, 
+              onPressed: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AdvancedItemSettingsScreenLayout()
+                    )
+                )
+              },
               child: Text("Advanced")
           )
         ],

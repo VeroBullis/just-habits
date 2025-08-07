@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_habits/layouts/HomeLayout.dart';
+import 'package:just_habits/layouts/screens/HomeScreenLayout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,6 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new HomeLayout();
+    return HomeScreenLayout();
   }
 }

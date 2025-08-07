@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   percent_indicator: ^4.2.5
   wheel_picker: ^0.2.2
+  table_calendar: ^3.2.0
 
 dev_dependencies:
   flutter_test:
