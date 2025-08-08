@@ -5,6 +5,7 @@ import 'package:just_habits/layouts/screens/NewGoalScreenLayout.dart';
 import 'package:just_habits/layouts/screens/NewHabitScreenLayout.dart';
 import 'package:just_habits/layouts/NewHeaderLayout.dart';
 import 'package:just_habits/layouts/NewItemLayout.dart';
+import 'package:just_habits/layouts/screens/NewToDoScreenLayout.dart';
 
 enum Choice {item, category}
 
@@ -54,7 +55,7 @@ class _CreateNewWindowState extends State<CreateNewDialogueLayout> {
     Navigator.pop(context);
     Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => NewGoalScreenLayout())
+        MaterialPageRoute(builder: (context) => NewToDoScreenLayout())
     );
   }
 

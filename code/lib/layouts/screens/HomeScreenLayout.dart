@@ -11,7 +11,14 @@ class HomeScreenLayout extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: Text("Just Habits"),
-          leading: IconButton(onPressed: onPressed, icon: Icon(Icons.menu)),
+          leading: MenuAnchor(
+            child: Icon(Icons.menu),
+              menuChildren: [
+                MenuItemButton(
+                  child: Text("ABC"),
+                )
+              ]
+          ),
         ),
         body: Center(
             child: ListView(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/layouts/screens/StatisticsScreen.dart';
 
 class ItemListLayout extends StatefulWidget {
   @override
@@ -10,20 +11,30 @@ class ItemListLayout extends StatefulWidget {
 class _ItemListState extends State<ItemListLayout> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
+    return TextButton(
+        onPressed: () => {},
+        onLongPress: () => onLongPress(context),
+        child: Row(
           children: [
-            Text("Title"),
-            Text("Subtitle")
+            Column(
+              children: [
+                  Text("Title"),
+                Text("Subtitle")
+              ],
+            ),
+              Checkbox(value: false, onChanged: (bool? newValue) {
+                setState(() => {});
+                },
+              )
           ],
-        ),
-        Checkbox(value: false, onChanged: (bool? newValue) {
-          setState(() {
+        )
+    );
+  }
 
-          });
-        },)
-      ],
+  void onLongPress(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => StatisticsScreen())
     );
   }
 
