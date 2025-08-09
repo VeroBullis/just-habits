@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/model/ItemType.dart';
+import 'package:just_habits/backend/onPressed/onAddPressed.dart';
 import 'package:just_habits/layouts/CategoryLayout.dart';
 import 'package:just_habits/layouts/dialogues/CreateNewDialogueLayout.dart';
 import 'package:just_habits/layouts/ItemListLayout.dart';
 import 'package:just_habits/layouts/screens/SettingsScreenLayout.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
+
+import '../../backend/onPressed/onSettingsPressed.dart';
 
 class HomeScreenLayout extends StatelessWidget{
   final controller = MenuController();
@@ -61,33 +65,20 @@ class HomeScreenLayout extends StatelessWidget{
                 LinearPercentIndicator(),
                 Column(
                   children: [
-                    CategoryLayout([ItemListLayout()]),
-                    ItemListLayout(),
-                    ItemListLayout()
+
                   ],
                 ),
-                IconButton(onPressed: () => showDialog(
-                    context: context,
-                    builder:
-                    (BuildContext context) => AlertDialog(
-                      title: Text("Create New"),
-                      actions: [
-                        CreateNewDialogueLayout()
-                      ],
-                    )
-                ), icon: Icon(Icons.add))
+                IconButton(
+                    onPressed: () => onAddPressed(context, ItemType.habit),
+                    icon: Icon(Icons.add)
+                )
               ],
             )
         )
     );
   }
 
+  // TODO: proper button functions
   void onPressed() {}
 
-  void onSettingsPressed(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SettingsScreenLayout())
-    );
-  }
 }

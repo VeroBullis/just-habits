@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/onPressed/onAdvancedPressed.dart';
+import 'package:just_habits/backend/onPressed/onConfirmNewItem.dart';
 import 'package:just_habits/layouts/AdvancedItemSettingsLayout.dart';
 import 'package:just_habits/layouts/screens/AdvancedItemSettingsScreenLayout.dart';
 import 'package:just_habits/layouts/DaySelectLayout.dart';
@@ -34,22 +36,12 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
               onChanged: (bool? value) {}
           ),
           TextButton(
-              onPressed: () => {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AdvancedItemSettingsScreenLayout()
-                    )
-                )
-              },
+              onPressed: () => onAdvancedPressed(context),
               child: Text("Advanced")
           )
         ],
       ),
     );
-  }
-
-  void onPressed() {
-    
   }
   
 }

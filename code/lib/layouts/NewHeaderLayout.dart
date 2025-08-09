@@ -1,7 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/onPressed/onConfirmNewItem.dart';
+
+import '../backend/model/ItemType.dart';
 
 class NewHeaderLayout extends StatelessWidget {
+
+  static String title = "";
+  final ItemType type;
+
+  const NewHeaderLayout({super.key, required this.type});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,9 +25,7 @@ class NewHeaderLayout extends StatelessWidget {
             ),
             Text("New Item"),
             IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: () => onConfirmNewItem(context, type),
                 icon: Icon(Icons.check)
             )
           ],
@@ -28,6 +35,7 @@ class NewHeaderLayout extends StatelessWidget {
             border: OutlineInputBorder(),
             labelText: "Title"
           ),
+          onSubmitted: (String value) => {title = value},
         )
       ],
     );
