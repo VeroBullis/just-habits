@@ -12,3 +12,13 @@ class Habit extends Item {
   Habit(super.type, super.title, super.note, super.category, super.highlight);
 
 }
+
+class Goal extends Item {
+  Goal(super.type, super.title, super.note, super.category, super.highlight);
+
+}
+
+class Todo extends Item {
+  Todo(super.type, super.title, super.note, super.category, super.highlight);
+
+}

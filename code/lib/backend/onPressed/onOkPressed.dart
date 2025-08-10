@@ -17,6 +17,8 @@ void onOkPressed(BuildContext context, ItemType type) {
       layout = NewGoalScreenLayout();
     case ItemType.todo:
       layout = NewToDoScreenLayout();
+    default:
+      return;
   }
 
   Navigator.pop(context);

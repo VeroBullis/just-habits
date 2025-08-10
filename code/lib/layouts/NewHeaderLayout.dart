@@ -23,7 +23,7 @@ class NewHeaderLayout extends StatelessWidget {
                 },
                 icon: Icon(Icons.arrow_back)
             ),
-            Text("New Item"),
+            Text("New $type"),
             IconButton(
                 onPressed: () => onConfirmNewItem(context, type),
                 icon: Icon(Icons.check)
@@ -35,7 +35,7 @@ class NewHeaderLayout extends StatelessWidget {
             border: OutlineInputBorder(),
             labelText: "Title"
           ),
-          onSubmitted: (String value) => {title = value},
+          onChanged: (String value) => {title = value},
         )
       ],
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/model/ItemType.dart';
 import 'package:just_habits/backend/onPressed/onAdvancedPressed.dart';
 import 'package:just_habits/backend/onPressed/onConfirmNewItem.dart';
 import 'package:just_habits/layouts/AdvancedItemSettingsLayout.dart';
@@ -20,7 +21,7 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
     return Scaffold(
       body: Column(
         children: [
-          NewItemLayout(),
+          NewItemLayout(type: ItemType.habit,),
           DropdownMenu(
               label: Text("Repeat by"),
               dropdownMenuEntries: [

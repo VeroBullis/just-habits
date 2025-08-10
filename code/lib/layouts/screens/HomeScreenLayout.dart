@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/backend/model/ItemType.dart';
+import 'package:just_habits/backend/model/UserData.dart';
 import 'package:just_habits/backend/onPressed/onAddPressed.dart';
 import 'package:just_habits/layouts/CategoryLayout.dart';
 import 'package:just_habits/layouts/dialogues/CreateNewDialogueLayout.dart';
@@ -10,8 +11,15 @@ import 'package:percent_indicator/flutter_percent_indicator.dart';
 
 import '../../backend/onPressed/onSettingsPressed.dart';
 
-class HomeScreenLayout extends StatelessWidget{
+class HomeScreenLayout extends StatefulWidget {
+
+  @override
+  _HomeScreenLayout createState() => _HomeScreenLayout();
+}
+
+class _HomeScreenLayout extends State<HomeScreenLayout>{
   final controller = MenuController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +72,10 @@ class HomeScreenLayout extends StatelessWidget{
                 ),
                 LinearPercentIndicator(),
                 Column(
-                  children: [
-
-                  ],
+                  children: List<Widget>.generate(
+                    userData.getNumHabits(), (i) =>
+                      ItemListLayout(item: userData.getHabit(i))
+                  ),
                 ),
                 IconButton(
                     onPressed: () => onAddPressed(context, ItemType.habit),

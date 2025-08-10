@@ -1,4 +1,4 @@
-enum ItemType {habit, goal, todo;
+enum ItemType {habit, goal, todo, category;
 
   @override
   String toString() {
@@ -9,6 +9,8 @@ enum ItemType {habit, goal, todo;
         return "Goal";
       case ItemType.todo:
         return "To-Do";
+      case ItemType.category:
+        return "Category";
     }
   }
 }
