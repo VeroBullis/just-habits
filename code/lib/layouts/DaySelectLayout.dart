@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_habits/layouts/dialogues/ScrollWheelDialogLayout.dart';
+import 'package:just_habits/layouts/dialogues/NumberPickerDialogLayout.dart';
 import 'package:wheel_picker/wheel_picker.dart';
 
 class DaySelectLayout extends StatelessWidget {
@@ -15,7 +15,7 @@ class DaySelectLayout extends StatelessWidget {
                 builder:
                 (BuildContext context) => AlertDialog(
                   title: Text("Select Frequency"),
-                  content: ScrollWheelDialogLayout(),
+                  content: NumberPickerDialogLayout(),
                   actions: [
                     ElevatedButton(
                         onPressed: () => {

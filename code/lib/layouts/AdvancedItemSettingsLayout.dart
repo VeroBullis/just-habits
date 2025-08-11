@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_habits/layouts/dialogues/ScrollWheelDialogLayout.dart';
+import 'package:just_habits/layouts/dialogues/NumberPickerDialogLayout.dart';
 
 class AdvancedItemSettingsLayout extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class AdvancedItemSettingsLayout extends StatelessWidget {
                   builder:
                   (BuildContext context) => AlertDialog(
                     title: Text("Select target"),
-                    content: ScrollWheelDialogLayout(),
+                    content: NumberPickerDialogLayout(),
                       actions: [
                         ElevatedButton(
                             onPressed: () => {

@@ -4,6 +4,8 @@ import 'package:just_habits/backend/model/ItemType.dart';
 import 'package:just_habits/layouts/NewHeaderLayout.dart';
 
 class NewItemLayout extends StatefulWidget {
+  static String note = "";
+  static bool highlight = false;
   final ItemType type;
 
   const NewItemLayout({super.key, required this.type});
@@ -15,6 +17,7 @@ class NewItemLayout extends StatefulWidget {
 
 class _NewItemState extends State<NewItemLayout> {
   ItemType type;
+  bool switchState = false;
 
   _NewItemState(this.type);
 
@@ -28,6 +31,9 @@ class _NewItemState extends State<NewItemLayout> {
                 border: OutlineInputBorder(),
                 labelText: "Note"
             ),
+            onChanged: (String value) {
+              NewItemLayout.note = value;
+            },
           ),
           DropdownMenu(
               label: Text("Category"),
@@ -37,8 +43,13 @@ class _NewItemState extends State<NewItemLayout> {
           ),
           SwitchListTile(
               title: Text("Highlight"),
-              value: false,
-              onChanged: (bool? value) {}
+              value: switchState,
+              onChanged: (bool value) {
+                NewItemLayout.highlight = value;
+                setState(() {
+                  switchState = value;
+                });
+              },
           )
         ],
       );

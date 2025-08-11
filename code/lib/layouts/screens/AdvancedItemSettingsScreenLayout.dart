@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/model/Item.dart';
+import 'package:just_habits/backend/onPressed/onChooseDatePressed.dart';
 import 'package:just_habits/layouts/AdvancedItemSettingsLayout.dart';
 import 'package:just_habits/layouts/MonthSelectLayout.dart';
 
 class AdvancedItemSettingsScreenLayout extends StatelessWidget {
+  static TrackingType? trackingType = TrackingType.yesno;
+  static int? target;
+  static bool? contribute = true;
+  static DateTime? startDate, endDate;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,22 +24,9 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
             children: [
               Text("Begin on:"),
               ElevatedButton(
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder:
-                          (BuildContext context) => AlertDialog(
-                        title: Text("Select Start Date"),
-                        content: Scaffold(
-                          body: MonthSelectLayout(),
-                        ),
-                        actions: [
-                          ElevatedButton(
-                              onPressed: () => {
-                                Navigator.pop(context)
-                              },
-                              child: Text("OK"))
-                        ],
-                      )),
+                  onPressed: () async {
+                    startDate = await onChooseDatePressed(context);
+                    },
                   child: Text(DateTime.now().toString())
               ),
             ],
@@ -41,22 +35,9 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
             children: [
               Text("End on:"),
               ElevatedButton(
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder:
-                          (BuildContext context) => AlertDialog(
-                        title: Text("Select Start Date"),
-                        content: Scaffold(
-                          body: MonthSelectLayout(),
-                        ),
-                        actions: [
-                          ElevatedButton(
-                              onPressed: () => {
-                                Navigator.pop(context)
-                              },
-                              child: Text("OK"))
-                        ],
-                      )),
+                  onPressed: () async {
+                    endDate = await onChooseDatePressed(context);
+                    },
                   child: Text(DateTime.now().toString())
               ),
             ],
