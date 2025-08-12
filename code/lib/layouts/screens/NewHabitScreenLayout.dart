@@ -14,8 +14,7 @@ import 'package:just_habits/layouts/NewItemLayout.dart';
 import 'package:just_habits/layouts/WeekSelectLayout.dart';
 
 class NewHabitScreenLayout extends StatefulWidget {
-  static RepeatInterval? repeatInterval;
-  static int? repeatCount;
+  static RepeatInterval repeatInterval = RepeatInterval.day;
 
   @override
   State<StatefulWidget> createState() => _NewHabitScreenState();
@@ -28,6 +27,8 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
+    NewHabitScreenLayout.repeatInterval = RepeatInterval.day;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -48,7 +49,6 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
                       weekVisible = false;
                       monthVisible = false;
                       NewHabitScreenLayout.repeatInterval = RepeatInterval.day;
-                      NewHabitScreenLayout.repeatCount = NumberPickerDialogLayout.chosenNumber;
                     case "Week":
                       dayVisible = false;
                       weekVisible = true;

@@ -31,6 +31,11 @@ class Item {
     trackingType ??= TrackingType.yesno;
     contribute ??= true;
   }
+
+  @override
+  String toString() {
+    return "$type $title";
+  }
 }
 
 class Habit extends Item {

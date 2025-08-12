@@ -1,20 +1,39 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WeekSelectLayout extends StatelessWidget {
-  final weekdays_set = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-  final weekdays_list = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+class WeekSelectLayout extends StatefulWidget {
+  static Set<int> selection = {};
+
+  @override
+  State<StatefulWidget> createState() => _WeekSelectState();
+
+}
+
+class _WeekSelectState extends State<WeekSelectLayout> {
+  final weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  final weekdaysLabel = ["S", "M", "T", "W", "T", "F", "S"];
+
 
 //TODO: finish this
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SegmentedButton<String>(
-            segments: List<ButtonSegment<String>>.generate(
-              7, (i) => ButtonSegment(value: weekdays_list[i])
+        SegmentedButton<int>(
+          multiSelectionEnabled: true,
+            emptySelectionAllowed: true,
+            segments: List<ButtonSegment<int>>.generate(
+              7, (i) => ButtonSegment(
+                  value: i,
+                  label: Text(weekdaysLabel[i])
+              )
             ),
-            selected: weekdays_set
+            selected: WeekSelectLayout.selection,
+            onSelectionChanged: (Set<int> newSelection) {
+              setState(() {
+                WeekSelectLayout.selection = newSelection;
+              });
+            },
         ),
         Text("Every Sat")
       ],

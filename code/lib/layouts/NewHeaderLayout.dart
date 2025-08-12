@@ -4,6 +4,7 @@ import 'package:just_habits/backend/onPressed/onConfirmNewItem.dart';
 
 import '../backend/model/ItemType.dart';
 
+//TODO: make sure static vars don't cause persistent value weirdness
 class NewHeaderLayout extends StatelessWidget {
 
   static String title = "";
@@ -13,6 +14,8 @@ class NewHeaderLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    title = "";
+
     return Column(
       children: [
         Row(
