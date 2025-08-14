@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:just_habits/backend/model/Item.dart';
+
+import '../backend/model/Globals.dart' as Globals;
 
 class WeekSelectLayout extends StatefulWidget {
-  static Set<int> selection = {};
 
   @override
   State<StatefulWidget> createState() => _WeekSelectState();
@@ -13,10 +15,11 @@ class _WeekSelectState extends State<WeekSelectLayout> {
   final weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   final weekdaysLabel = ["S", "M", "T", "W", "T", "F", "S"];
 
+  Set<int> selection = {};
 
-//TODO: finish this
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         SegmentedButton<int>(
@@ -28,10 +31,11 @@ class _WeekSelectState extends State<WeekSelectLayout> {
                   label: Text(weekdaysLabel[i])
               )
             ),
-            selected: WeekSelectLayout.selection,
+            selected: selection,
             onSelectionChanged: (Set<int> newSelection) {
               setState(() {
-                WeekSelectLayout.selection = newSelection;
+                selection = newSelection;
+                (Globals.newItem! as Habit).repeat.selected = newSelection;
               });
             },
         ),

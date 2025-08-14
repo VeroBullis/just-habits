@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/backend/onPressed/onRemindTimePressed.dart';
 
+import '../backend/model/Globals.dart' as Globals;
+
 class ReminderTimeLayout extends StatefulWidget {
-  static TimeOfDay? remindTime;
   @override
   _ReminderTimeState createState() => _ReminderTimeState();
 
@@ -30,7 +31,7 @@ class _ReminderTimeState extends State<ReminderTimeLayout> {
             Text("At"),
             ElevatedButton(
                 onPressed: () async {
-                  ReminderTimeLayout.remindTime = await onRemindTimePressed(context);
+                  Globals.newItem!.remindTime = await onRemindTimePressed(context);
                   },
                 child: Text("7:00 AM")
             )

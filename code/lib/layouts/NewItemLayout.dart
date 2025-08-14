@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:just_habits/backend/model/ItemType.dart';
 import 'package:just_habits/layouts/NewHeaderLayout.dart';
 
+import '../backend/model/Globals.dart' as Globals;
+
 class NewItemLayout extends StatefulWidget {
-  static String note = "";
-  static bool highlight = false;
   final ItemType type;
 
   const NewItemLayout({super.key, required this.type});
@@ -32,7 +32,7 @@ class _NewItemState extends State<NewItemLayout> {
                 labelText: "Note"
             ),
             onChanged: (String value) {
-              NewItemLayout.note = value;
+              Globals.newItem!.note = value;
             },
           ),
           DropdownMenu(
@@ -45,7 +45,7 @@ class _NewItemState extends State<NewItemLayout> {
               title: Text("Highlight"),
               value: switchState,
               onChanged: (bool value) {
-                NewItemLayout.highlight = value;
+                Globals.newItem!.highlight = value;
                 setState(() {
                   switchState = value;
                 });

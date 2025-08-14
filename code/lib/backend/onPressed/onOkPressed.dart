@@ -5,6 +5,8 @@ import 'package:just_habits/layouts/screens/NewGoalScreenLayout.dart';
 import 'package:just_habits/layouts/screens/NewHabitScreenLayout.dart';
 
 import '../../layouts/screens/NewToDoScreenLayout.dart';
+import '../model/Globals.dart' as Globals;
+import '../model/Item.dart';
 
 void onOkPressed(BuildContext context, ItemType type) {
 
@@ -12,7 +14,7 @@ void onOkPressed(BuildContext context, ItemType type) {
 
   switch (type) {
     case ItemType.habit:
-      layout = NewHabitScreenLayout();
+      layout = NewHabitScreenLayout(newHabit: Habit(repeat: Globals.DEFAULT_REPEAT),);
     case ItemType.goal:
       layout = NewGoalScreenLayout();
     case ItemType.todo:

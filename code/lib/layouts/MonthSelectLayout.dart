@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../backend/model/Globals.dart' as Globals;
+import '../backend/model/Item.dart';
+
 class MonthSelectLayout extends StatefulWidget {
-  static Set<int> selection = {};
   const MonthSelectLayout({super.key});
 
   @override
@@ -12,7 +14,7 @@ class MonthSelectLayout extends StatefulWidget {
 }
 
 class _MonthSelectLayout extends State<MonthSelectLayout>{
-  Set<DateTime> selected = {};
+  Set<int> selected = {};
   DateTime focused = DateTime.utc(2000, 10, 1);
 
   @override
@@ -31,14 +33,13 @@ class _MonthSelectLayout extends State<MonthSelectLayout>{
           onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
             int date = selectedDay.day;
             setState(() {
-              if (selected.contains(selectedDay)) {
-                selected.remove(selectedDay);
-                MonthSelectLayout.selection.remove(date);
+              if (selected.contains(date)) {
+                selected.remove(date);
               } else {
-                selected.add(selectedDay);
-                MonthSelectLayout.selection.add(date);
+                selected.add(date);
               }
               focused = focusedDay;
+              (Globals.newItem! as Habit).repeat.selected = selected;
             });
           },
         ),

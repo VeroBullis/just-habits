@@ -9,6 +9,7 @@ import 'package:just_habits/layouts/ItemListLayout.dart';
 import 'package:just_habits/layouts/screens/SettingsScreenLayout.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 
+import '../../backend/model/Globals.dart';
 import '../../backend/onPressed/onSettingsPressed.dart';
 
 class HomeScreenLayout extends StatefulWidget {

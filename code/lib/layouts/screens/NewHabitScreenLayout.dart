@@ -13,8 +13,15 @@ import 'package:just_habits/layouts/MonthSelectLayout.dart';
 import 'package:just_habits/layouts/NewItemLayout.dart';
 import 'package:just_habits/layouts/WeekSelectLayout.dart';
 
+import '../../backend/model/Globals.dart' as Globals;
+import '../../backend/model/Item.dart';
+
 class NewHabitScreenLayout extends StatefulWidget {
-  static RepeatInterval repeatInterval = RepeatInterval.day;
+  Habit newHabit;
+
+  NewHabitScreenLayout({super.key, required this.newHabit}) {
+    Globals.newItem = newHabit;
+  }
 
   @override
   State<StatefulWidget> createState() => _NewHabitScreenState();
@@ -27,39 +34,35 @@ class _NewHabitScreenState extends State<NewHabitScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
-    NewHabitScreenLayout.repeatInterval = RepeatInterval.day;
-
     return Scaffold(
       body: ListView(
         children: [
           NewItemLayout(type: ItemType.habit),
           DropdownMenu(
               label: Text("Repeat by"),
-              initialSelection: "Day",
+              initialSelection: RepeatInterval.day,
               dropdownMenuEntries: [
-                DropdownMenuEntry(value: "Day", label: "Day"),
-                DropdownMenuEntry(value: "Week", label: "Week"),
-                DropdownMenuEntry(value: "Month", label: "Month")
+                DropdownMenuEntry(value: RepeatInterval.day, label: "Day"),
+                DropdownMenuEntry(value: RepeatInterval.week, label: "Week"),
+                DropdownMenuEntry(value: RepeatInterval.month, label: "Month")
               ],
-            onSelected: (String? selected) {
+            onSelected: (RepeatInterval? selected) {
                 setState(() {
+                  (Globals.newItem as Habit).repeat.interval = selected!;
                   switch (selected) {
-                    case "Day":
+                    case RepeatInterval.day:
                       dayVisible = true;
                       weekVisible = false;
                       monthVisible = false;
-                      NewHabitScreenLayout.repeatInterval = RepeatInterval.day;
-                    case "Week":
+                    case RepeatInterval.week:
                       dayVisible = false;
                       weekVisible = true;
                       monthVisible = false;
-                      NewHabitScreenLayout.repeatInterval = RepeatInterval.week;
-                    case "Month":
+                    case RepeatInterval.month:
                       dayVisible = false;
                       weekVisible = false;
                       monthVisible = true;
-                      NewHabitScreenLayout.repeatInterval = RepeatInterval.month;
-                  }
+                    }
                 });
             },
           ),

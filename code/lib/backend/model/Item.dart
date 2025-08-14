@@ -4,7 +4,8 @@ import 'package:just_habits/backend/model/Repeat.dart';
 
 import 'ItemType.dart';
 
-enum TrackingType {yesno, counter}
+enum TrackingType {yesNo, counter}
+enum TargetType {atLeast, atMost}
 
 class Item {
   ItemType type;
@@ -13,13 +14,14 @@ class Item {
   bool? highlight;
   TimeOfDay? remindTime;
   TrackingType? trackingType;
+  TargetType? targetType;
   int? target;
   bool? contribute;
 
   Item({
     required this.type,
-    required this.title,
-    required this.note,
+    this.title = "",
+    this.note = "",
     this.category,
     this.highlight,
     this.remindTime,
@@ -28,7 +30,7 @@ class Item {
     this.contribute
   }) {
     highlight ??= false;
-    trackingType ??= TrackingType.yesno;
+    trackingType ??= TrackingType.yesNo;
     contribute ??= true;
   }
 
@@ -43,9 +45,9 @@ class Habit extends Item {
   DateTime? startDate, endDate;
 
   Habit({
-    required super.type,
-    required super.title,
-    required super.note,
+    super.type = ItemType.habit,
+    super.title,
+    super.note,
     super.category,
     super.highlight,
     super.remindTime,
@@ -63,9 +65,9 @@ class Habit extends Item {
 
 class Goal extends Item {
   Goal({
-    required super.type,
-    required super.title,
-    required super.note,
+    super.type = ItemType.goal,
+    super.title,
+    super.note,
     super.category,
     super.highlight,
     super.remindTime,
@@ -78,9 +80,9 @@ class Goal extends Item {
 
 class Todo extends Item {
   Todo({
-    required super.type,
-    required super.title,
-    required super.note,
+    super.type = ItemType.todo,
+    super.title,
+    super.note,
     super.category,
     super.highlight,
     super.remindTime,

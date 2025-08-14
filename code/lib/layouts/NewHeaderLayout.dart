@@ -2,20 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/backend/onPressed/onConfirmNewItem.dart';
 
+import '../backend/model/Globals.dart' as Globals;
 import '../backend/model/ItemType.dart';
 
-//TODO: make sure static vars don't cause persistent value weirdness
+//TODO: replace static vars with reference to globals
 class NewHeaderLayout extends StatelessWidget {
 
-  static String title = "";
   final ItemType type;
 
   const NewHeaderLayout({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
-    title = "";
-
     return Column(
       children: [
         Row(
@@ -38,7 +36,9 @@ class NewHeaderLayout extends StatelessWidget {
             border: OutlineInputBorder(),
             labelText: "Title"
           ),
-          onChanged: (String value) => {title = value},
+          onChanged: (String value) {
+            Globals.newItem!.title = value;
+          },
         )
       ],
     );

@@ -5,12 +5,11 @@ import 'package:just_habits/backend/onPressed/onChooseDatePressed.dart';
 import 'package:just_habits/layouts/AdvancedItemSettingsLayout.dart';
 import 'package:just_habits/layouts/MonthSelectLayout.dart';
 
-class AdvancedItemSettingsScreenLayout extends StatelessWidget {
-  static TrackingType? trackingType = TrackingType.yesno;
-  static int? target;
-  static bool? contribute = true;
-  static DateTime? startDate, endDate;
+import '../../backend/model/Globals.dart' as Globals;
 
+class AdvancedItemSettingsScreenLayout extends StatelessWidget {
+
+  //TODO: separate begin/end date selection into separate widget to be made visible based on item type
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +24,7 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
               Text("Begin on:"),
               ElevatedButton(
                   onPressed: () async {
-                    startDate = await onChooseDatePressed(context);
+                    (Globals.newItem! as Habit).startDate = await onChooseDatePressed(context);
                     },
                   child: Text(DateTime.now().toString())
               ),
@@ -36,7 +35,7 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
               Text("End on:"),
               ElevatedButton(
                   onPressed: () async {
-                    endDate = await onChooseDatePressed(context);
+                    (Globals.newItem! as Habit).endDate = await onChooseDatePressed(context);
                     },
                   child: Text(DateTime.now().toString())
               ),
