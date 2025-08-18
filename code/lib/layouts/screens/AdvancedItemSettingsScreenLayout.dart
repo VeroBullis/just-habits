@@ -7,9 +7,20 @@ import 'package:just_habits/layouts/MonthSelectLayout.dart';
 
 import '../../backend/model/Globals.dart' as Globals;
 
-class AdvancedItemSettingsScreenLayout extends StatelessWidget {
+class AdvancedItemSettingsScreenLayout extends StatefulWidget {
+  const AdvancedItemSettingsScreenLayout({super.key});
+
+  @override
+  _AdvancedItemSettingsScreenState createState() => _AdvancedItemSettingsScreenState();
+
+}
+
+class _AdvancedItemSettingsScreenState extends State<AdvancedItemSettingsScreenLayout> {
+  String beginText = "";
+  String endText = "";
 
   //TODO: separate begin/end date selection into separate widget to be made visible based on item type
+  //TODO: finalize date selection button labels
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +35,15 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
               Text("Begin on:"),
               ElevatedButton(
                   onPressed: () async {
-                    (Globals.newItem! as Habit).startDate = await onChooseDatePressed(context);
+                    DateTime? selected = await onChooseDatePressed(context, (Globals.newItem! as Habit).startDate);
+                    if (selected != null) {
+                      (Globals.newItem! as Habit).startDate = selected;
+                      setState(() {
+                        beginText = getDateText(selected);
+                      });
+                    }
                     },
-                  child: Text(DateTime.now().toString())
+                  child: Text(beginText)
               ),
             ],
           ),
@@ -35,9 +52,15 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
               Text("End on:"),
               ElevatedButton(
                   onPressed: () async {
-                    (Globals.newItem! as Habit).endDate = await onChooseDatePressed(context);
+                    DateTime? selected = await onChooseDatePressed(context, (Globals.newItem! as Habit).endDate);
+                    if (selected != null) {
+                      (Globals.newItem! as Habit).endDate = selected;
+                      setState(() {
+                        endText = getDateText(selected);
+                      });
+                    }
                     },
-                  child: Text(DateTime.now().toString())
+                  child: Text(endText)
               ),
             ],
           ),
@@ -45,6 +68,14 @@ class AdvancedItemSettingsScreenLayout extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getDateText(DateTime? date) {
+    final localizations = MaterialLocalizations.of(context);
+
+    date ??= DateTime.now();
+
+    return localizations.formatCompactDate(date);
   }
 
 }

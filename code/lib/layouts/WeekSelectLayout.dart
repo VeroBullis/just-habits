@@ -14,6 +14,7 @@ class WeekSelectLayout extends StatefulWidget {
 class _WeekSelectState extends State<WeekSelectLayout> {
   final weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   final weekdaysLabel = ["S", "M", "T", "W", "T", "F", "S"];
+  String selectionString = "";
 
   Set<int> selection = {};
 
@@ -36,12 +37,31 @@ class _WeekSelectState extends State<WeekSelectLayout> {
               setState(() {
                 selection = newSelection;
                 (Globals.newItem! as Habit).repeat.selected = newSelection;
+                selectionString = getSelectionString();
               });
             },
         ),
-        Text("Every Sat")
+        Text(selectionString)
       ],
     );
+  }
+
+  String getSelectionString() {
+    String selectionString;
+    List selectionList = selection.toList();
+    selectionList.sort();
+
+    if (selection.isEmpty) {
+      return "";
+    } else {
+      selectionString = "Every ";
+      for (int i in selectionList) {
+        selectionString += "${weekdays[i]}, ";
+      }
+      selectionString = selectionString.substring(0, selectionString.lastIndexOf(","));
+    }
+
+    return selectionString;
   }
 
 }

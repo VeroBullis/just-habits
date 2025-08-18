@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_habits/backend/model/Item.dart';
 import 'package:just_habits/backend/model/ItemType.dart';
@@ -27,5 +28,7 @@ void onConfirmNewItem(BuildContext context, ItemType type) {
       MaterialPageRoute(builder: (context) => HomeScreenLayout())
   );
 
-  print(userData.habitList);
+  if (kDebugMode) {
+    print(userData.habitList);
+  }
 }

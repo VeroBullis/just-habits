@@ -16,6 +16,7 @@ class MonthSelectLayout extends StatefulWidget {
 class _MonthSelectLayout extends State<MonthSelectLayout>{
   Set<int> selected = {};
   DateTime focused = DateTime.utc(2000, 10, 1);
+  String selectionString = "";
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class _MonthSelectLayout extends State<MonthSelectLayout>{
           daysOfWeekVisible: false,
           focusedDay: focused,
           selectedDayPredicate: (DateTime day) {
-            return selected.contains(day);
+            return selected.contains(day.day);
           },
           firstDay: DateTime.utc(2000, 10, 1),
           lastDay: DateTime.utc(2000, 10, 31),
@@ -40,12 +41,31 @@ class _MonthSelectLayout extends State<MonthSelectLayout>{
               }
               focused = focusedDay;
               (Globals.newItem! as Habit).repeat.selected = selected;
+              selectionString = getSelectionString();
             });
           },
         ),
-        Text("Every month on the 1")
+        Text(selectionString)
       ]
     );
+  }
+
+  String getSelectionString() {
+    String selectionString;
+    List selectionList = selected.toList();
+    selectionList.sort();
+
+    if (selected.isEmpty) {
+      return "";
+    } else {
+      selectionString = "Every month on the ";
+      for (int i in selectionList) {
+        selectionString += "$i, ";
+      }
+      selectionString = selectionString.substring(0, selectionString.lastIndexOf(","));
+    }
+
+    return selectionString;
   }
 
 }

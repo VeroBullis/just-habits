@@ -32,6 +32,7 @@ class NewHeaderLayout extends StatelessWidget {
           ],
         ),
         TextField(
+          key: Key("TitleTextField"),
           decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: "Title"
